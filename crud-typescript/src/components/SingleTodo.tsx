@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Todo } from '../model';
 import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
 import { MdDone} from 'react-icons/md';
@@ -30,11 +30,19 @@ const SingleTodo= ({todo, todos, setTodos} : Props) => {
         )))
         setEdit(false)
     }
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [edit])
+
     return (
         <form className="todosSingle" onSubmit={(e) => handleEdit(e, todo.id)}>
             {
                 edit ? (
-                    <input value={editTodo} 
+                    <input  
+                    ref={inputRef}
+                    value={editTodo} 
                     onChange={(e) => setEditTodo(e.target.value)}
                     className= 'todosSingle-text'
                     />
