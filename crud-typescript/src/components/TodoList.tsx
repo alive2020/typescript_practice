@@ -15,37 +15,40 @@ const TodoList: React.FC<Props> = ({todos, setTodos, completedTodos, setComplete
     return (
        <div className="container">
            <Droppable droppableId="TodosList">
-               { (provided) => (
-                <div className="todos" ref={provided.innerRef} {...provided.droppableProps}>
+               { (provided, snapshot) => (
+                <div className={`todos ${snapshot.isDraggingOver? 'dragactive': ""}`} ref={provided.innerRef} {...provided.droppableProps}>
                <span className="todosHeading">Active Tasks</span>
-               {todos.map((todo)=> (
+               {todos.map((todo, index)=> (
                    <SingleTodo 
+                   index={index}
                    todo={todo}
                    todos= {todos}
                    key={todo.id}
                    setTodos = {setTodos}
                    />
                ))}
-           </div>
-               )
-               }
-           
-           </Droppable>
-           <Droppable droppableId="TodosRemove">
-               {(provided) => (
-                <div className="todos remove" ref={provided.innerRef} {...provided.droppableProps}>
-           <span className="todosHeading">Completed Tasks</span>
-               {completedTodos.map((todo)=> (
-                   <SingleTodo 
-                   todo={todo}
-                   todos= {completedTodos}
-                   key={todo.id}
-                   setTodos = {setCompletedTodos}
-                   />
-               ))}
+               {provided.placeholder}
            </div>
                )}
            
+           </Droppable>
+           <Droppable droppableId="TodosRemove">
+               {(provided, snapshot) => (
+                <div className={`todos remove ${snapshot.isDraggingOver? 'dragcomplete': ""}`} ref={provided.innerRef} {...provided.droppableProps}>
+           <span className="todosHeading">Completed Tasks</span>
+               {completedTodos.map((todo, index)=> (
+                   <SingleTodo 
+                   index= {index}
+                   todo= {todo}
+                   todos= {completedTodos}
+                   key= {todo.id}
+                   setTodos = {setCompletedTodos}
+                   />
+               ))}
+                 {provided.placeholder}
+
+           </div>
+               )}     
 </Droppable>
            
            
