@@ -11,7 +11,7 @@
   width: 100%;
   border-radius: 50px;
   padding: 20px 30px;
-  font-size: 25px;
+  font-size: 20px;
   border: none;
   transition: 0.2s;
   box-shadow: inset 0 0 5px black;
@@ -52,19 +52,33 @@
   margin-top: 10px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .todos {
   display: flex;
-  width: 47.5%;
+  width: 45%;
   flex-direction: column;
   padding: 15px;
   border-radius: 5px;
   background-color: rgb(50, 195, 205);
 }
 
+.activetodos {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.comtodos {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .todosHeading {
-  font-size: 30px;
+  font-size: 24px;
+  font-family: 'Raleway', sans-serif;
   color: #fff;
 }
 
@@ -83,11 +97,11 @@
 }
 
 .todosSingle-text {
+  font-size: 16px;
   font-family: 'Raleway', sans-serif;
   flex: 1;
   padding: 5px;
   border: none;
-  font-size: 20px;
 }
 
 .todosSingle-text:focus {
@@ -95,8 +109,9 @@
 }
 
 .icon {
+  color: rgb(74, 77, 83);
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -117,6 +132,12 @@
   .container {
     width: 95%;
     flex-direction: column;
+  }
+  .activetodos {
+    position: relative;
+  }
+  .comtodos {
+    position: relative;
   }
 }
 
